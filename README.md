@@ -225,6 +225,41 @@ Alerts are triggered if:
 
 ---
 
+## Sample Input
+
+{
+  "user_id": "123",
+  "event_type": "promotion",
+  "message": "50% discount offer",
+  "priority_hint": "low",
+  "timestamp": "2026-02-26T10:00:00Z"
+}
+
+## Sample Output
+
+{
+  "decision": "LATER",
+  "reason": "Low priority event and user exceeded notification threshold"
+}
+
+---
+
+## Edge Case Handling
+
+- If dedupe_key is missing → Generate hash using user_id + event_type
+- If duplicate detected → Suppress notification
+- If AI scoring fails → Use rule-based fallback
+- If notification volume exceeds limit → Delay non-urgent alerts
+
+---
+
+## Future Improvements
+
+- Machine learning based personalized scoring
+- User preference learning system
+- Real-time analytics dashboard
+- Time-aware smart scheduling
+
 ## 12. Conclusion
 
 This Notification Prioritization Engine:
